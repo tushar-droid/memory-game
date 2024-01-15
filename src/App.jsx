@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Cards from "./compnents/cards";
+import '../src/styles/styles.css'
+import { useState, useEffect } from "react";
+const App = () =>{
+  
+  const [randNumbers, setrandNumbers] = useState([1,5,2,6,9]);
+  const [clickedCards, setClickedCards] = useState([])
+  const [counter, setCounter] =useState(0)
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
+  
+  const cardClicked = (e, id) =>{
+
+
+    if(clickedCards.includes(id))
+    {
+      window.alert('Game Over')
+      setClickedCards([])
+      return
+    }
+
+    const temp = [...clickedCards];
+    temp.push(id)
+    setClickedCards(temp)    
+  }
+
+
+  useEffect(() => {
+    let size = 5; 
+    let uniqueArray = [];
+    while (uniqueArray.length < size) {
+      let randomValue = Math.floor(Math.random() * 6);  
+      if (!uniqueArray.includes(randomValue)) {
+        uniqueArray.push(randomValue);
+      }
+    }
+    setrandNumbers(uniqueArray)    
+
+
+    setCounter(clickedCards.length)
+  }, [clickedCards])
+
+
+
+  return(
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="cards-container">
+        {randNumbers.map((ind) => 
+          <Cards 
+          cardId = {ind}
+          key = {ind}
+          clickHandler={cardClicked}
+          />
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Score: {counter}</h1>
     </>
   )
 }
 
-export default App
+export default App;

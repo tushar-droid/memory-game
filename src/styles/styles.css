@@ -1,0 +1,43 @@
+body{
+    background-color: red;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Calibri;
+}
+#root{
+    width: 80%;    
+    overflow: hidden;
+}
+.cards-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    gap:2rem;
+    flex-wrap: wrap;
+}
+
+
+.legend-card{
+    outline: solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.legend-card > img{
+    height: 15rem;
+    width: auto;
+}
+
+#root > h1{
+    color: white;
+}
