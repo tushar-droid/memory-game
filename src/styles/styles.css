@@ -25,19 +25,82 @@ body{
 
 
 .legend-card{
-    outline: solid black;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: white;
+    /* background-color: black; */
 }
 
-.legend-card > img{
+
+
+.card-image{
     height: 15rem;
     width: auto;
+}
+
+.legend-title{
+    text-transform: uppercase;
+    text-align: center;
 }
 
 #root > h1{
     color: white;
 }
+
+
+
+
+
+
+/* For flip effect */
+.legend-card {
+    width: 200px;
+    height: 300px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  
+  .card-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform 1s;
+  }
+  
+  .front {
+    transform: rotateY(0deg);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    outline: solid black;
+  }
+  
+  .back {
+    transform: rotateY(180deg);
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .legend-title {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .legend-card.flipped .front {
+    transform: rotateY(-180deg);
+
+  }
+  
+  .legend-card.flipped .back {
+    transform: rotateY(0deg);
+  }
