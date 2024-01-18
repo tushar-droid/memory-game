@@ -2,6 +2,8 @@ import { useState } from "react";
 import Game from "./Game";
 import StartScreen from "./StartScreen";
 import EndScreen from "./EndScreen";
+import './styles/endScreenStyles.css'
+
 const App = () =>{
     // let highScore = 0;
     const [highScore, sethighScore] = useState(0)
@@ -36,6 +38,7 @@ const App = () =>{
             <Game
                 level={level}
                 endScreen={GameComplete}
+                back = {() => setPage('startScreen')}                
                 />}
             {page === 'endScreen' && 
             <EndScreen                 

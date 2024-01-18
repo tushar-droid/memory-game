@@ -1,5 +1,4 @@
 body{
-    background-color: red ;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -7,28 +6,39 @@ body{
     align-items: center;
     justify-content: center;
     font-family: Calibri;
+    color: white;
+    background-color: black;
 }
 #root{
-    width: 80%;    
+    width: 100%;    
     overflow: hidden;
 }
 .cards-container{
     margin-top: 5%;
     margin-bottom: 5%;
-    width: 100%;
+    width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;    
     gap:2rem;
     flex-wrap: wrap;
+    
 }
 
+.gameScreen{
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .legend-card{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    overflow: hidden;
+    border-radius: 10px;
     /* background-color: black; */
 }
 
@@ -44,12 +54,29 @@ body{
     text-align: center;
 }
 
-#root > h1{
-    color: white;
+.score-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  width: 100%;
 }
 
+.go-back{
+  font-size: 1.5vw;
+  padding: 0.5% 1%;
+  transform: skew(-15deg);
+  transition: all 0.2s ease-in-out;
+  background-color: #5e0000;
+  color: #eae7e7;
+  border: none;
+}
 
-
+.go-back:hover{
+  transform: scale(1.1) skew(-15deg);
+  cursor: pointer;
+}
 
 
 
@@ -59,6 +86,8 @@ body{
     height: 300px;
     perspective: 1000px;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
   }
   
   .card-face {
@@ -73,13 +102,21 @@ body{
     transform: rotateY(0deg);
     display: flex;
     flex-direction: column;
-    background-color: white;
-    outline: solid black;
+    background-color: #5e0000;
   }
+
+
+  .legend-card:hover{
+    transform: scale(1.1);
+    box-shadow: rgb(94, 0, 0) 0px 2px 4px 0px, rgb(132, 48, 48) 0px 2px 16px 0px;
+  }
+
+
+
   
   .back {
     transform: rotateY(180deg);
-    background-color: black;
+    background-color: #5e0000;
     display: flex;
     align-items: center;
     justify-content: center;

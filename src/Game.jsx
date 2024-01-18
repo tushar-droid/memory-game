@@ -2,7 +2,7 @@ import Cards from "./compnents/cards";
 import '../src/styles/styles.css'
 import { useState, useEffect } from "react";
 // eslint-disable-next-line react/prop-types
-const Game = ({level, endScreen}) =>{
+const Game = ({level, endScreen, back}) =>{
 
   const tiles = level - 2;
 
@@ -24,7 +24,7 @@ const Game = ({level, endScreen}) =>{
       allCards.forEach(card => {
         card.classList.remove('flipped');
       })
-    }, 2000);
+    }, 1000);
     if(clickedCards.includes(id))
     {
       endScreen('Game Over you clicked the same tile', counter)
@@ -92,15 +92,17 @@ const Game = ({level, endScreen}) =>{
         setrandNumbers(uniqueArray)    
         console.log('score is: ', counter)
 
-      },1000)
+      },800)
 
     }
   }, [clickedCards, size, counter, endScreen, tiles])
 
 
 
+
+
   return(
-    <>
+    <div className="gameScreen">
       <div className="cards-container">
         {randNumbers.map((ind) => 
           <Cards 
@@ -110,9 +112,11 @@ const Game = ({level, endScreen}) =>{
           />
         )}
       </div>
-      <h1>Score: {counter}</h1>
-      <h2>Level: {level}</h2>
-    </>
+      <div className="score-container">
+        <h1>Score: {counter}</h1> 
+        <button className="go-back" onClick={back}>Back</button>
+      </div>
+    </div>
   )
 }
 
