@@ -1,4 +1,4 @@
-import Cards from "./compnents/cards.jsx";
+import Cards from "./compnents/Cards.jsx";
 import '../src/styles/styles.css'
 import { useState, useEffect } from "react";
 // eslint-disable-next-line react/prop-types
