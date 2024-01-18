@@ -1,7 +1,7 @@
 const legendsArray = [
     {
         id:0,
-        name:'Ash',
+        name:'ash',
         isClicked: false,
         imgSrc: 'src/assets/images/ash.png'   
     },
@@ -79,7 +79,7 @@ const legendsArray = [
     },
     {
         id:13,
-        name:'mad maggie',
+        name:'madmaggie',
         isClicked: false,
         imgSrc: 'src/assets/images/madmaggie.png'   
     },

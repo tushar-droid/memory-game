@@ -6,7 +6,9 @@ const Cards = ({cardId, clickHandler}) =>{
     return(
         <div className="legend-card flipped" onClick={e => clickHandler(e, indx)}>
             <div className="front card-face">
-                <img src = {legendsArray[indx].imgSrc} className="card-image"/>
+            <img src = {'src/assets/images/'+legendsArray[indx].name+'.png'} className="card-image"/>
+
+                {/* <img src = {legendsArray[indx].imgSrc} className="card-image"/> */}
                 <h1 className="legend-title">{legendsArray[indx].name}</h1>
             </div>
             <div className="back card-face">
