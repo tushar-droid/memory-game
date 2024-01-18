@@ -1,4 +1,4 @@
-
+import './styles/startScreenStyles.css'
 // eslint-disable-next-line react/prop-types
 const StartScreen = ({startGame}) =>{
     return(

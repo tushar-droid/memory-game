@@ -2,52 +2,54 @@ import Cards from "./compnents/cards";
 import '../src/styles/styles.css'
 import { useState, useEffect } from "react";
 // eslint-disable-next-line react/prop-types
-const Game = ({level}) =>{
+const Game = ({level, endScreen}) =>{
+
+  const tiles = level - 2;
+
+
 
   let size = level;   
   const [randNumbers, setrandNumbers] = useState([]);
   const [clickedCards, setClickedCards] = useState([])
   const [counter, setCounter] =useState(0)
-  console.log('Set level is: ',level)
 
-  
   const cardClicked = (e, id) =>{
-
     const allCards = document.querySelectorAll('.legend-card');
-
     allCards.forEach(card => {
       if(!card.classList.contains('flipped'))
         card.classList.add('flipped');
     });
-  
     setTimeout(() => {
       const allCards = document.querySelectorAll('.legend-card');
       allCards.forEach(card => {
         card.classList.remove('flipped');
-      });
+      })
     }, 2000);
-
-
-
     if(clickedCards.includes(id))
     {
-      window.alert('Game Over')
+      endScreen('Game Over you clicked the same tile', counter)
       setClickedCards([])
       return
     }
-
     const temp = [...clickedCards];
     temp.push(id)
+    setCounter(clickedCards.length + 1)
     setClickedCards(temp)    
   }
 
 
   useEffect(() => {
-    if(clickedCards.length ===0){             //For the First run
+    let nextRound =true;
+    if(counter >= size){
+      nextRound = false
+      endScreen('Good job', counter)
+    }
 
+    if(clickedCards.length ===0){             //For the First run
+      console.log('looping here');
       let uniqueArray = [];
-      while (uniqueArray.length < 3) {     // changing size to 3
-        let randomValue = Math.floor(Math.random() * 3);  // changing size to 3
+      while (uniqueArray.length < tiles) {     // changing size to 3 now to tiles
+        let randomValue = Math.floor(Math.random() * tiles);  // changing size to 3 now to tiles
         if (!uniqueArray.includes(randomValue)) {
           uniqueArray.push(randomValue);
         }
@@ -63,7 +65,7 @@ const Game = ({level}) =>{
 
 
     }
-    else{
+    else{      
       setTimeout(()=>{
         let uniqueArray = [];
         const checkArrays = (arrayOfClickedCards, arrayOfNewCards) =>{
@@ -72,36 +74,28 @@ const Game = ({level}) =>{
           return arrayOfNewCards.every(v => arrayOfClickedCards.includes(v))          
         }
 
+
         do{
           uniqueArray = [];
-          console.log('ran');
-          while (uniqueArray.length < 3) {                       // changing size to 3
+          while (uniqueArray.length < tiles) {                       // changing size to 3
             let randomValue = Math.floor(Math.random() * size);     
             if (!uniqueArray.includes(randomValue)) {
               uniqueArray.push(randomValue);
             }
-          }  
-          console.log('clicked : ', clickedCards)
-          console.log('New : ', uniqueArray)
+          }
+          if(nextRound ===false)
+            break
+          
+          console.log('Runnign')
+
         }while(checkArrays(clickedCards, uniqueArray))
         setrandNumbers(uniqueArray)    
-        // let uniqueArray = [];
-        // while (uniqueArray.length < size) {
-        //   let randomValue = Math.floor(Math.random() * size);  
-        //   if (!uniqueArray.includes(randomValue)) {
-        //     uniqueArray.push(randomValue);
-        // setrandNumbers(uniqueArray)    
+        console.log('score is: ', counter)
 
-        //   }
-        // }
       },1000)
 
     }
-    setCounter(() => clickedCards.length);
-    if(counter >=size)
-      window.alert('You win')
-
-  }, [clickedCards, size, counter])
+  }, [clickedCards, size, counter, endScreen, tiles])
 
 
 
