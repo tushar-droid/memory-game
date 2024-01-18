@@ -141,3 +141,9 @@ body{
   .legend-card.flipped .back {
     transform: rotateY(0deg);
   }
+
+  @media only screen and (max-width: 1000px) {
+    .go-back{
+        font-size: 2rem;
+    }
+}

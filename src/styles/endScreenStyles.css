@@ -1,5 +1,4 @@
 .result-screen{
-    outline: lime solid;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,3 +21,15 @@
     transform: scale(1.1) skew(-15deg);
     cursor: pointer;
   }
+
+  @media only screen and (max-width: 1000px) {
+
+    .playagain-btn{
+        font-size: 6vw;
+    }
+
+    .result-screen{
+      text-align: center;
+    }
+
+}
